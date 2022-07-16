@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+
+    <div class="container">
+        <h1>Home!</h1>
+        <!-- 
+        <h3 th:text="${msgnatela}"></h3>
+        <button class="btn btn-primary">ME CLICA AI</button>
+        <a class="btn btn-primary" href="https://getbootstrap.com/docs/5.2/getting-started/download/" >Link</a>
+        -->
+    </div>
+
+    <div th:include="layout :: footer">(footer)</div>
+
+</body>
+</html>

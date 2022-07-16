@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+
+    <div class="container">
+        <h1>Adicionar Procedimento</h1>
+        
+        <form th:action="@{/procedimento/(form)}" method="POST" th:object="${procedimento}">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="txtnome">Descrição do Procedimento:</label>
+                        <input class="form-control" type="text" id="txtnome" th:field="*{descricao}">
+                        <!-- <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger"/></p> -->
+                    </div>
+                </div>
+                
+            <h1 class="text-center"></h1>
+            <button type="submit" class="btn btn-light">Enviar</button>
+        </form>
+    </div>
+
+    <div th:include="layout :: footer">(footer)</div>
+
+</body>
+</html>

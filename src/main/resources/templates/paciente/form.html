@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <nav th:replace="layout :: menu">(menu)</nav>
+
+        <div class="container">
+            <h1>Adicionar Paciente</h1>
+            
+            <form th:action="@{/paciente/(form)}" method="POST" th:object="${paciente}">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="txtnome">Nome:</label>
+                            <input class="form-control" type="text" id="txtnome" th:field="*{nome}">
+                            <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger"/></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="txtsexo">Sexo:</label>
+                            <input class="form-control" placeholder="Masculino/Feminino" type="text" id="txtsexo" th:field="*{sexo}">
+                            <p th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" class="alert alert-danger"/></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="txtdatanascimento">Data Nascimento:</label>
+                            <input class="form-control" type="date" id="txtdatanascimento" th:field="*{dataNascimento}">
+                            <p th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}" class="alert alert-danger"/></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cidade:</label>
+                        <select th:field="*{cidadeId}" class="form-select">
+                            <option th:each="cidade : ${listaCidades}" th:value="${cidade.id}" th:text="${cidade.nome}"></option>
+                            
+                        </select>
+                        <p th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}" class="alert alert-danger"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Plano de Saude:</label>
+                        <select th:field="*{planoSaudeId}" class="form-select">
+                            <option th:each="planoSaude : ${listaPlanoSaude}" th:value="${planoSaude.id}" th:text="${planoSaude.nome}"></option>
+                            
+                        </select>
+                        <button type="submit" name="incplano" class="btn btn-primary">Incluir Plano</button>
+                    </div>
+
+                    <div class="form-group">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="planoSaude, stat : *{listaPlanoSaude}">
+                                    <td th:text="${planoSaude.nome}"></td>
+                                    <input type="hidden" th:field="*{listaPlanoSaude[__${stat.index}__].id}"/>
+                                    <input type="hidden" th:field="*{listaPlanoSaude[__${stat.index}__].nome}"/>
+                                    <td>
+                                        <button type="submit" name="removeitem" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p></p>
+                    
+                </div>
+                <h1 class="text-center"></h1>
+                <button type="submit" name="save" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+
+        <div th:include="layout :: footer">(footer)</div>
+
+    </body>
+</html>

@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(110, 211, 252);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.table {
+    background-color: rgb(73, 252, 207);
+    border-radius: 3px;
+}
+
+.botao-direita{
+    display: flex;
+    justify-content: flex-end;
+}
