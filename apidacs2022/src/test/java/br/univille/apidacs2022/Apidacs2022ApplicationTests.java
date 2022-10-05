@@ -185,7 +185,7 @@ class Apidacs2022ApplicationTests {
 		String jwtToken = resultAuth.getResponse().getContentAsString();
 
 		MvcResult result = mockMvc.perform(post("/api/v1/consultas")
-				.content("{\"paciente\":\"id\":\"1\"}")
+				.content("{\"paciente\": {\"id\":\"1\"}}")
 				.header("Authorization", "Bearer " + jwtToken)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
@@ -196,7 +196,7 @@ class Apidacs2022ApplicationTests {
 		mockMvc.perform(get("/api/v1/consultas/" + objJson.getString("id"))
 				.header("Authorization", "Bearer " + jwtToken))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.paciente.id", is("1")));
+				.andExpect(jsonPath("$.paciente.id", is(1)));
 	}
 
 }

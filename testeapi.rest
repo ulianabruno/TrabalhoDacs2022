@@ -17,6 +17,10 @@ GET http://localhost:8081/api/v1/consultas
 Authorization: Bearer {{token}}
 
 ###
+GET http://localhost:8081/api/v1/medicos
+Authorization: Bearer {{token}}
+
+###
 GET http://localhost:8081/api/v1/pacientes/?nome=pessoa
 Authorization: Bearer {{token}}
 
@@ -76,8 +80,11 @@ Content-Type: application/json
     "data": "2022-08-17T01:00:00",
     "status": "",
     "paciente": {
-        "id": 1
-    }
+        "id": 1,
+        "nome": "Doctorapaciente"
+    },
+    "listaProcedimentos": [
+    ]
 }
 ###
 
